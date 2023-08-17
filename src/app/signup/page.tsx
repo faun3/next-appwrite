@@ -15,7 +15,9 @@ const Page = () => {
 
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
-      <h1>Signup</h1>
+      <h1 className="text-5xl font-bold tracking-wide my-10 text-sky-500">
+        Signup
+      </h1>
       <label htmlFor="username">Username</label>
       <input
         className="px-4 py-2 rounded-lg border-gray-300 focus:border-gray-600 focus:outline-none mb-4 shadow-md"
