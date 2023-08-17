@@ -15,6 +15,7 @@ const userSchema = new mongoose.Schema({
     type: String,
     required: [true, "Please provide a password"],
   },
+  // it would be better to do this with roles, not with db fields
   isVerified: {
     type: Boolean,
     default: false,
@@ -23,6 +24,7 @@ const userSchema = new mongoose.Schema({
     type: Boolean,
     default: false,
   },
+  // token stuff
   forgotPasswordToken: String,
   forgotPasswordTokenExpiry: Date,
   verifyToken: String,
