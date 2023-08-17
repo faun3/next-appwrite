@@ -2,7 +2,7 @@
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 const Page = () => {
   const [user, setUser] = useState({
@@ -11,12 +11,22 @@ const Page = () => {
     username: "",
   });
 
+  const [buttonDisabled, setButtonDisabled] = useState(true);
+
   const onSignup = async () => {};
+
+  useEffect(() => {
+    if (user.email.length > 0 && user.password.length && user.username.length) {
+      setButtonDisabled(false);
+    }
+  }, [user]);
+
+  const router = useRouter();
 
   return (
     <div className="flex flex-col items-center justify-center py-2 bg-white p-10 rounded-lg">
       <h1 className="text-5xl font-bold tracking-wide my-10 text-sky-500">
-        Signup
+        Sign up
       </h1>
       <label htmlFor="username">Username</label>
       <input
@@ -51,8 +61,9 @@ const Page = () => {
         }}
       />
       <button
-        className="px-4 py-2 bg-sky-400 hover:bg-sky-600 active:bg-sky-700 active:scale-95 focus:outline-none rounded-lg shadow-md text-orange-50 text-lg font-bold tracking-wide"
-        onClick={onSignup}>
+        className="px-4 py-2 bg-sky-400 enabled:hover:bg-sky-600 enabled:active:bg-sky-700 enabled:active:scale-95 focus:outline-none rounded-lg shadow-md text-orange-50 text-lg font-bold tracking-wide disabled:cursor-not-allowed disabled:opacity-70"
+        onClick={onSignup}
+        disabled={buttonDisabled}>
         Join
       </button>
       <p className="text-gray-500 my-6">

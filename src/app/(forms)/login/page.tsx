@@ -39,7 +39,7 @@ const Page = () => {
         }}
       />
       <button
-        className="px-4 py-2 bg-sky-400 hover:bg-sky-600 active:bg-sky-700 active:scale-95 focus:outline-none rounded-lg shadow-md text-orange-50 text-lg font-bold tracking-wide"
+        className="px-4 py-2 bg-sky-400 enabled:hover:bg-sky-600 enabled:active:bg-sky-700 enabled:active:scale-95 focus:outline-none rounded-lg shadow-md text-orange-50 text-lg font-bold tracking-wide disabled:cursor-not-allowed disabled:opacity-7"
         onClick={onLogin}>
         Join
       </button>
