@@ -8,7 +8,7 @@ import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
 import { HydratedDocument } from "mongoose";
 
-export const GET = async (req: NextRequest) => {
+export const POST = async (req: NextRequest) => {
   try {
     await connect();
     // this is similar to req.body when using Express
