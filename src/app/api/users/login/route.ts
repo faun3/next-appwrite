@@ -44,6 +44,15 @@ const POST = async (req: NextResponse) => {
     const token = await jwt.sign(tokenData, process.env.TOKEN_SECRET, {
       expiresIn: "8h",
     });
+
+    const resp = NextResponse.json({
+      message: "login successful",
+      success: true,
+    });
+
+    resp.cookies.set("token", token, { httpOnly: true });
+
+    return resp;
   } catch (error) {
     const errorifiedValue = errorifier(error);
     throw errorifiedValue;
