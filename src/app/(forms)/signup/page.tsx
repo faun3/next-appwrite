@@ -35,7 +35,11 @@ const Page = () => {
   };
 
   useEffect(() => {
-    if (user.email.length > 0 && user.password.length && user.username.length) {
+    if (
+      user.email.length > 0 &&
+      user.password.length > 0 &&
+      user.username.length > 0
+    ) {
       setButtonDisabled(false);
     } else {
       setButtonDisabled(true);
