@@ -25,5 +25,5 @@ export function middleware(req: NextRequest) {
 // read next docs for more info on this
 // this matcher array specifies the paths that middleware runs on
 export const config = {
-  matcher: ["/", "/profile", "/login", "/signup"],
+  matcher: ["/", "/profile/:path*", "/login", "/signup"],
 };
