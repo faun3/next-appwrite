@@ -24,6 +24,8 @@ export function middleware(req: NextRequest) {
 
 // read next docs for more info on this
 // this matcher array specifies the paths that middleware runs on
+//
+// the :path* syntax means that we match the profile path and any of its subroutes
 export const config = {
   matcher: ["/", "/profile/:path*", "/login", "/signup"],
 };
