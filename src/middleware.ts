@@ -21,6 +21,9 @@ export function middleware(req: NextRequest) {
     return NextResponse.redirect(new URL("/login", req.nextUrl));
   }
 }
+
+// read next docs for more info on this
+// this matcher array specifies the paths that middleware runs on
 export const config = {
   matcher: ["/", "/profile", "/login", "/signup"],
 };
