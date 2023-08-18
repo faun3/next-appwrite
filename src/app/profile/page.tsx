@@ -41,7 +41,7 @@ const Page = () => {
     }
   };
 
-  const [id, setId] = useState(0);
+  const [id, setId] = useState<string>("");
 
   useEffect(() => {
     const helper = async () => {
@@ -54,7 +54,12 @@ const Page = () => {
   return (
     <div className="flex flex-col items-center justify-center min-h-screen py-2">
       <Toaster />
-      <div>Your user id is {id}</div>
+      <div>
+        Your user id is{" "}
+        <Link href={`/profile/${id}`} className="text-blue-500 underline">
+          {id}
+        </Link>
+      </div>
       <hr />
       <button
         className="bg-sky-500 px-4 py-2 text-xl font-bold tracking-wide text-white rounded-lg shadow-md my-8 hover:bg-sky-600 active:bg-sky-700 active:scale-95 active:shadow"
