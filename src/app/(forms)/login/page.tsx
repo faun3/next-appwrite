@@ -31,6 +31,7 @@ const Page = () => {
         email: "",
         password: "",
       });
+    } finally {
       setLoading(false);
     }
   };
