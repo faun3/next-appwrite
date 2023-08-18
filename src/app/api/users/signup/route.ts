@@ -6,7 +6,6 @@ import { connect } from "@/db/db";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
-import { HydratedDocument } from "mongoose";
 
 export const POST = async (req: NextRequest) => {
   try {
@@ -34,7 +33,7 @@ export const POST = async (req: NextRequest) => {
     const newUser = new User({
       username,
       email,
-      password,
+      password: hashedPass,
     });
 
     const savedUser = await newUser.save();
