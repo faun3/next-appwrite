@@ -5,6 +5,7 @@ import axios from "axios";
 import { useEffect, useState } from "react";
 import FadeLoader from "react-spinners/FadeLoader";
 import toast, { Toaster } from "react-hot-toast";
+import errorifier from "@/helpers/errorifier";
 
 const Page = () => {
   const [user, setUser] = useState({
@@ -26,11 +27,9 @@ const Page = () => {
         router.push("/login");
       }, 2000);
     } catch (error) {
-      if (error instanceof Error) {
-        toast.error(error.message);
-      } else {
-        toast.error("Something went wrong! Please try again.");
-      }
+      const errorified = errorifier(error);
+      toast.error(errorified.message);
+      setLoading(false);
     }
   };
 
