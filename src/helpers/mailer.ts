@@ -49,6 +49,30 @@ export const sendEmail = async (
         pass: process.env.NODEMAILER_PASS,
       },
     });
+
+    let subject: string = "";
+    if (emailType === "verify") {
+      subject = "Verify your email";
+    } else if (emailType === "reset") {
+      subject = "Reset your password";
+    }
+
+    const mailOptions = {
+      //TODO:  maybe add a real address to the .env so you can test this
+      from: "fake@gmail.com",
+      to: email,
+      subject: subject,
+      html: `
+      <p>Click <a href="${
+        process.env.domain
+      }/verifyemail?token=${hashedToken}">here</a> to ${
+        subject[0].toLowerCase() + subject.slice(1)
+      }.</p>
+      `,
+    };
+
+    const mailResponse = await transport.sendMail(mailOptions);
+    return mailResponse;
   } catch (error) {
     const e = errorifier(error);
     throw new Error(e.message);
