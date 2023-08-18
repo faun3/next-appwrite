@@ -22,8 +22,8 @@ const Page = () => {
       const res = await axios.post("api/users/login", user);
       toast.success("Logged in!");
       await setTimeout(() => {
-        router.push("/");
-      }, 2000);
+        router.push("/profile");
+      }, 1500);
     } catch (error) {
       const errorified = errorifier(error);
       toast.error(errorified.message);
