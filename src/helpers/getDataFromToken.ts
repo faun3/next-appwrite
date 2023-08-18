@@ -1,6 +1,14 @@
 import { NextRequest } from "next/server";
-import jwt from "jsonwebtoken";
+import jwt, { JwtPayload } from "jsonwebtoken";
 import errorifier from "./errorifier";
+
+declare module "jsonwebtoken" {
+  export interface JwtPayload {
+    id: string;
+    username: string;
+    email: string;
+  }
+}
 
 export default function getDataFromToken(req: NextRequest) {
   try {
@@ -10,7 +18,10 @@ export default function getDataFromToken(req: NextRequest) {
       throw new Error("you forgot your token secret");
     }
 
-    const decodedToken = jwt.verify(token, process.env.TOKEN_SECRET);
+    const decodedToken: JwtPayload | string = jwt.verify(
+      token,
+      process.env.TOKEN_SECRET
+    );
 
     return decodedToken;
   } catch (error) {
