@@ -23,6 +23,10 @@ export default function getDataFromToken(req: NextRequest) {
       process.env.TOKEN_SECRET
     );
 
+    if (typeof decodedToken === "string") {
+      throw new Error("the decoded token was a string, not a user");
+    }
+
     return decodedToken;
   } catch (error) {
     const e = errorifier(error);
