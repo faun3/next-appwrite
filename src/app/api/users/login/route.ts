@@ -6,10 +6,12 @@ import { HydratedDocument } from "mongoose";
 import errorifier from "@/helpers/errorifier";
 import jwt from "jsonwebtoken";
 
-const POST = async (req: NextResponse) => {
+export async function POST(req: NextResponse) {
   try {
     const reqBody = await req.json();
     const { email, password } = reqBody;
+
+    await connect();
 
     // check if the user exists
     const foundUser = await User.findOne({
@@ -57,6 +59,4 @@ const POST = async (req: NextResponse) => {
     const errorifiedValue = errorifier(error);
     throw errorifiedValue;
   }
-};
-
-export default POST;
+}
