@@ -14,10 +14,9 @@ export const POST = async (req: NextRequest) => {
     // this is similar to req.body when using Express
     const reqBody = await req.json();
     const username = reqBody.username as string;
-    const email = reqBody.username as string;
-    const password = reqBody.username as string;
-
-    console.log(reqBody);
+    const email = reqBody.email as string;
+    const password = reqBody.password as string;
+    console.log(username, email, password);
 
     // we can query by email only because the field is unique
     const foundUser = await User.findOne({ email });
@@ -43,7 +42,8 @@ export const POST = async (req: NextRequest) => {
 
     // send the user a verification email
 
-    await sendEmail(savedUser.email, savedUser._id, "verify");
+    const info = await sendEmail(email, savedUser._id, "verify");
+    console.log(info);
 
     return NextResponse.json(
       JSON.stringify({
