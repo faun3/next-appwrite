@@ -58,8 +58,7 @@ export const sendEmail = async (
     }
 
     const mailOptions = {
-      //TODO:  maybe add a real address to the .env so you can test this
-      from: "fake@gmail.com",
+      from: process.env.TEST_EMAIL || "fake@gmail.com",
       to: email,
       subject: subject,
       html: `
