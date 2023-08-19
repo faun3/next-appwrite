@@ -6,13 +6,16 @@ import { connect } from "@/db/db";
 import User from "@/models/userModel";
 import { NextRequest, NextResponse } from "next/server";
 import bcryptjs from "bcryptjs";
+import { sendEmail } from "@/helpers/mailer";
 
 export const POST = async (req: NextRequest) => {
   try {
     await connect();
     // this is similar to req.body when using Express
     const reqBody = await req.json();
-    const { username, email, password } = reqBody;
+    const username = reqBody.username as string;
+    const email = reqBody.username as string;
+    const password = reqBody.username as string;
 
     console.log(reqBody);
 
@@ -37,6 +40,10 @@ export const POST = async (req: NextRequest) => {
     });
 
     const savedUser = await newUser.save();
+
+    // send the user a verification email
+
+    await sendEmail(savedUser.email, savedUser._id, "verify");
 
     return NextResponse.json(
       JSON.stringify({
