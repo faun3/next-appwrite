@@ -3,7 +3,7 @@ import User from "@/models/userModel";
 import bcryptjs from "bcryptjs";
 import errorifier from "./errorifier";
 
-interface IUserData {
+export interface IUserData {
   email: string;
   username: string;
   password: string;
@@ -15,7 +15,8 @@ interface IUserData {
 // the "type" is referring to the purpose of the email:
 // password recovery, confirmation, info, etc
 export const sendEmail = async (
-  { email, id }: IUserData,
+  email: string,
+  id: string,
   emailType: string
 ) => {
   try {
