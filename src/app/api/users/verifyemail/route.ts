@@ -32,6 +32,11 @@ export async function POST(req: NextRequest) {
     foundUser.verifyToken = undefined;
     foundUser.verifyTokenExpiry = undefined;
 
+    return NextResponse.json({
+      message: "email verified",
+      success: true,
+    });
+
     await foundUser.save();
   } catch (error) {
     const e = errorifier(error);
