@@ -58,16 +58,18 @@ export const sendEmail = async (
       subject = "Reset your password";
     }
 
+    const domain = process.env.DOMAIN || "http://localhost:3000";
+
     const mailOptions = {
       from: process.env.TEST_EMAIL || "fake@gmail.com",
       to: email,
       subject: subject,
       html: `
-      <p>Click <a href="${
-        process.env.domain
-      }/verifyemail?token=${hashedToken}">here</a> to ${
+      <p>Click <a href="${domain}/verifyemail?token=${hashedToken}">here</a> to ${
         subject[0].toLowerCase() + subject.slice(1)
       }.</p>
+      <hr></hr>
+      <p>Here's a link you can paste: ${domain}/verifyemail?token=${hashedToken}</p>
       `,
     };
 
